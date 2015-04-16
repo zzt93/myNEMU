@@ -1,9 +1,9 @@
 #include "exec/helper.h"
 
 //use case as the signed extension
-#define JCC(condition, rel)\
-    if(condition) {\
-        cpu.eip += (rel);                     \
+#define JCC(condition, rel)                     \
+    if(condition) {                             \
+        cpu.eip += (rel);                       \
     }
 
 

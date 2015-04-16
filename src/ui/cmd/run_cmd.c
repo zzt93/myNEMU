@@ -24,11 +24,13 @@ Use 'r' command to start the program.");
 }
 
 void cmd_r() {
+    printf("in cmd_r\n");
 	if(nemu_state != END) {//STOP or INT is already running
 		char c;
 		while(1) {
 			printf("The program is already running. Restart the program? (y or n)");
-			scanf("%c", &c);
+            fflush(stdout);
+			scanf(" %c", &c);
 			switch(c) {
 				case 'y': goto restart_;
 				case 'n': return;

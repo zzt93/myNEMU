@@ -80,8 +80,9 @@ void set_pf(uint32_t n) {
 }
 
 /* had better just shift unsigned integer*/
-inline void set_sf(uint32_t num) {
-    cpu.sf = num >> 31;
+inline void set_sf(uint32_t num, int size) {
+    assert(size == 1 || size == 2 || size == 4);
+    cpu.sf = num >> (8 * size - 1);
 }
 
 inline void set_zf(uint32_t num) {

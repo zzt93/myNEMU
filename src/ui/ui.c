@@ -40,6 +40,8 @@ void main_loop() {
         cmd = NULL;// the strtok ask for a NULL
 		if(p == NULL) { continue; }
 
+        //printf("command is %s\n", p);
+        fflush(stdout);
 		if(strcmp(p, "c") == 0) { cmd_c(); }
 		else if(strcmp(p, "r") == 0) { cmd_r(); }
 		else if(strcmp(p, "q") == 0) { return; }

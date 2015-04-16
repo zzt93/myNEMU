@@ -11,6 +11,11 @@ make_helper(concat(mov_i2r_, SUFFIX)) {
 	return DATA_BYTE + 1;
 }
 
+/*
+  mod   | reg/opcode | r/m
+  3     |            | register's code
+  0,1,2 |            | different addressing mode
+ */
 make_helper(concat(mov_i2rm_, SUFFIX)) {
 	ModR_M m;
 	DATA_TYPE imm;

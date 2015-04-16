@@ -15,6 +15,8 @@ char* get_pure_input() {
 
 	line_read = readline("(nemu) ");
 
+    //printf("line read %s\n", line_read);
+    fflush(stdout);
 	if (line_read && *line_read) {//line_read is not NULL and content in it is not '\0'
 		add_history(line_read);
 	}
@@ -25,6 +27,7 @@ char* get_pure_input() {
 char* skip_heading_space(char* in){
     while (isspace(*in)) {
         in++;
+        printf("skip\n");
     }
     return in;
 }

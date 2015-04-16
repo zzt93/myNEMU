@@ -14,7 +14,7 @@
 
 
 /* for instruction encoding overloading */
-/* if suffix == 'l' means the length is 4 byte; otherwise is 2 byte*/
+
 extern char suffix;
 
 make_helper(mov_i2r_v) {

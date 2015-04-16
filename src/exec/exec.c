@@ -1,6 +1,6 @@
 #include "exec/helper.h"
 
-#include "all-instr.h"
+#include "exec/all-instr.h"
 
 typedef int (*helper_fun)(swaddr_t);
 
@@ -40,8 +40,8 @@ helper_fun opcode_table [256] = {
 /* 0x74 */	je_b, inv, inv, inv,
 /* 0x78 */	inv, inv, inv, inv, 
 /* 0x7c */	inv, inv, inv, inv, 
-/* 0x80 */	inv, inv, nemu_trap, inv, 
-/* 0x84 */	je_v, inv, inv, inv, 
+/* 0x80 */	inv, inv, nemu_trap, eighty3,
+/* 0x84 */	test_r7rm_b, test_r7rm_v, inv, inv,
 /* 0x88 */	mov_r2rm_b, mov_r2rm_v, mov_rm2r_b, mov_rm2r_v,
 /* 0x8c */	inv, inv, inv, inv, 
 /* 0x90 */	inv, inv, inv, inv,
@@ -78,4 +78,76 @@ helper_fun opcode_table [256] = {
  #define make_helper(name) int name(swaddr_t eip) */
 make_helper(exec) {
 	return opcode_table[ instr_fetch(eip, 1) ](eip);//function execute the instruction here
+}
+
+
+helper_fun two_opcode [256] = {
+/* 0x00 */	inv, inv, inv, inv, 
+/* 0x04 */	inv, inv, inv, inv, 
+/* 0x08 */	inv, inv, inv, inv, 
+/* 0x0c */	inv, inv, inv, inv,
+/* 0x10 */	inv, inv, inv, inv, 
+/* 0x14 */	inv, inv, inv, inv, 
+/* 0x18 */	inv, inv, inv, inv, 
+/* 0x1c */	inv, inv, inv, inv, 
+/* 0x20 */	inv, inv, inv, inv, 
+/* 0x24 */	inv, inv, inv, inv,
+/* 0x28 */	inv, inv, inv, inv, 
+/* 0x2c */	inv, inv, inv, inv, 
+/* 0x30 */	inv, inv, inv, inv, 
+/* 0x34 */	inv, inv, inv, inv,
+/* 0x38 */	inv, inv, inv, inv, 
+/* 0x3c */	inv, inv, inv, inv, 
+/* 0x40 */	inv, inv, inv, inv, 
+/* 0x44 */	inv, inv, inv, inv,
+/* 0x48 */	inv, inv, inv, inv, 
+/* 0x4c */	inv, inv, inv, inv, 
+/* 0x50 */	inv, inv, inv, inv,
+/* 0x54 */	inv, inv, inv, inv,
+/* 0x58 */	inv, inv, inv, inv, 
+/* 0x5c */	inv, inv, inv, inv, 
+/* 0x60 */	inv, inv, inv, inv,
+/* 0x64 */	inv, inv, inv, inv,
+/* 0x68 */	inv, inv, inv, inv, 
+/* 0x6c */	inv, inv, inv, inv, 
+/* 0x70 */	inv, inv, inv, inv,
+/* 0x74 */	inv, inv, inv, inv,
+/* 0x78 */	inv, inv, inv, inv, 
+/* 0x7c */	inv, inv, inv, inv, 
+/* 0x80 */	inv, inv, inv, inv,
+/* 0x84 */	je_v, inv, inv, inv,
+/* 0x88 */	inv, inv, inv, inv,
+/* 0x8c */	inv, inv, inv, inv, 
+/* 0x90 */	inv, inv, inv, inv,
+/* 0x94 */	inv, inv, inv, inv,
+/* 0x98 */	inv, inv, inv, inv, 
+/* 0x9c */	inv, inv, inv, inv, 
+/* 0xa0 */	inv, inv, inv, inv,
+/* 0xa4 */	inv, inv, inv, inv,
+/* 0xa8 */	inv, inv, inv, inv,//iAX_b == iAL_b
+/* 0xac */	inv, inv, inv, inv,
+/* 0xb0 */	inv, inv, inv, inv,
+/* 0xb4 */	inv, inv, inv, inv,
+/* 0xb8 */	inv, inv, inv, inv,
+/* 0xbc */	inv, inv, inv, inv,
+/* 0xc0 */	inv, inv, inv, inv,
+/* 0xc4 */	inv, inv, inv, inv,
+/* 0xc8 */	inv, inv, inv, inv,
+/* 0xcc */	inv, inv, inv, inv,
+/* 0xd0 */	inv, inv, inv, inv,
+/* 0xd4 */	inv, inv, inv, inv,
+/* 0xd8 */	inv, inv, inv, inv,
+/* 0xdc */	inv, inv, inv, inv,
+/* 0xe0 */	inv, inv, inv, inv,
+/* 0xe4 */	inv, inv, inv, inv,
+/* 0xe8 */	inv, inv, inv, inv,
+/* 0xec */	inv, inv, inv, inv,
+/* 0xf0 */	inv, inv, inv, inv,
+/* 0xf4 */	inv, inv, inv, inv,
+/* 0xf8 */	inv, inv, inv, inv,
+/* 0xfc */	inv, inv, inv, inv
+};
+
+make_helper(two_byte) {
+    return two_opcode [instr_fetch(eip, 1)](eip);
 }

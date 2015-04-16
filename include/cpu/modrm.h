@@ -11,6 +11,7 @@ typedef union {
 		uint8_t reg		:3;
 		uint8_t mod		:2;
 	};
+    // this byte expend to opcode
 	struct {
 		uint8_t dont_care	:3;
 		uint8_t opcode		:3;

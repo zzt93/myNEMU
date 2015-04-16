@@ -65,7 +65,7 @@ extern const char* regsb[];
 
 void set_pf(uint32_t);
 void set_zf(uint32_t);
-void set_sf(uint32_t);
+void set_sf(uint32_t, int size);
 void set_cf_b(uint32_t, uint32_t);
 bool set_cf_c(int, long long, long long);
 void set_af_b(uint32_t, uint32_t);
