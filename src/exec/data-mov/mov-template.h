@@ -13,7 +13,7 @@ make_helper(concat(mov_i2r_, SUFFIX)) {
 
 /*
   mod   | reg/opcode | r/m
-  3     |            | register's code
+  3     |code for reg| register's code
   0,1,2 |            | different addressing mode
  */
 make_helper(concat(mov_i2rm_, SUFFIX)) {

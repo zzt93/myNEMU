@@ -6,14 +6,16 @@
 /* See i386 manual for more details about instruction format. */
 
 typedef union {
+    // two oprand all not immediate number
 	struct {
 		uint8_t R_M		:3;
 		uint8_t reg		:3;
 		uint8_t mod		:2;
 	};
     // this byte expend to opcode
+    // one oprand is immediate number
 	struct {
-		uint8_t dont_care	:3;
+		uint8_t R_M_IM	:3;
 		uint8_t opcode		:3;
 	};
 	uint8_t val;
