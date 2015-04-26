@@ -12,7 +12,7 @@ int main() {
 
 	b = A[3];
 	A[5] = b;
-	
+
 	nemu_assert(A[0] == 0);
 	nemu_assert(A[1] == 1);
 	nemu_assert(A[2] == 2);
@@ -20,6 +20,13 @@ int main() {
 	nemu_assert(A[4] == 4);
 	nemu_assert(b == 3);
 	nemu_assert(A[5] == 3);
+
+    A[6] = -1;
+    A[7] = 255;
+    A[8] = 124;
+    nemu_assert(A[6] == -1);
+    nemu_assert(A[7] == 255);
+    nemu_assert(A[8] == 124);
 
 	HIT_GOOD_TRAP;
 
