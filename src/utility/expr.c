@@ -1,5 +1,5 @@
 #include "common.h"
-#include "memory.h"
+#include "memory/memory.h"
 #include <stdlib.h>
 #include <limits.h>
 

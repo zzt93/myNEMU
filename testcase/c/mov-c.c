@@ -22,7 +22,7 @@ int main() {
 	nemu_assert(A[5] == 3);
 
     A[6] = -1;
-    A[7] = 255;
+    A[7] = 255;//in this case, 255 is too large for signed imm8, compiler use imm32
     A[8] = 124;
     nemu_assert(A[6] == -1);
     nemu_assert(A[7] == 255);

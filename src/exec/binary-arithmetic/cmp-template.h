@@ -7,6 +7,7 @@ make_helper(concat(cmp_AXi_, SUFFIX)) {
     DATA_TYPE imm = instr_fetch(eip + 1, DATA_BYTE);
     DATA_TYPE tmp = reg - imm;
     cmp_set_flag(DATA_BYTE, reg, imm, tmp);
+    print_asm("cmp" str(SUFFIX) " $0x%x, %%%s", imm, REG_NAME(AX));
     // 1 means opcode, DATA_BYTE means the immediate number
     return DATA_BYTE + 1;
 }
@@ -14,7 +15,7 @@ make_helper(concat(cmp_AXi_, SUFFIX)) {
 make_helper(concat(cmp_i8_rm_, SUFFIX)) {
     ModR_M m;
     //TODO examine the signed extend
-    DATA_TYPE_S imm ;
+    int8_t imm ;
     m.val = instr_fetch(eip + 1, 1);
     if (m.mod == 3) {
         imm = instr_fetch(eip + 1 + 1, 1);

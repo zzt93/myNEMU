@@ -10,6 +10,9 @@
 #define BANK_WIDTH 3
 #define RANK_WIDTH (27 - COL_WIDTH - ROW_WIDTH - BANK_WIDTH)
 
+/*
+  rank 4 | bank 3 | row 10 | col 10
+ */
 typedef union {
 	struct {
 		uint32_t col	: COL_WIDTH;
@@ -109,6 +112,22 @@ uint32_t dram_read(hwaddr_t addr, size_t len) {
 	}
 
 	return *(uint32_t *)(temp + offset) & (~0u >> ((4 - len) << 3));
+}
+
+// TODO remove duplicate code
+int32_t dram_read_signed(hwaddr_t addr, size_t len) {
+	assert(len == 1 || len == 2 || len == 4);
+	uint32_t offset = addr & BURST_MASK;
+	uint8_t temp[2 * BURST_LEN];
+	
+	ddr3_read(addr, temp);
+
+	if( (addr ^ (addr + len - 1)) & ~(BURST_MASK)  ) {
+		/* data cross the burst boundary */
+		ddr3_read(addr + BURST_LEN, temp + BURST_LEN);
+	}
+
+	return *(int32_t *)(temp + offset) & (~0u >> ((4 - len) << 3));
 }
 
 void dram_write(hwaddr_t addr, size_t len, uint32_t data) {

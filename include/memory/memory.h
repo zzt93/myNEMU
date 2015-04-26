@@ -13,4 +13,8 @@ extern uint8_t *hw_mem;
 uint32_t swaddr_read(swaddr_t, size_t);
 void swaddr_write(swaddr_t, size_t, uint32_t);
 
+uint32_t instr_fetch(swaddr_t addr, size_t len);
+int32_t fetch_signed(swaddr_t, size_t);
+
+
 #endif

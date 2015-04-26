@@ -1,7 +1,7 @@
 #ifndef  __SW_BP_H__
 #define  __SW_BP_H__
 
-#include "memory.h"
+#include "memory/memory.h"
 #include "breakpoint.h"
 
 
