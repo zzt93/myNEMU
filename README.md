@@ -3,6 +3,18 @@
 
 Try to learn computer architecture by lab
 
+## Aim: 
+Implement a simplified x86 simulator.
+
+## Running environment:
+- Virtualbox (Debian netinst CD image with i386 architecture.)
+- Debian:
+	- make
+	- lreadline
+	- gcc
+	- ld
+- [more detail](http://cslab.nju.edu.cn/ics/index.php/Ics:2013/PA0)
+
 ------------------------------
 
 Aug 12 2015 update:
